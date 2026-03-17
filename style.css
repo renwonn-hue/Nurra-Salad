@@ -1,0 +1,629 @@
+/* --- CSS VARIABLES --- */
+:root {
+    --primary: #50C878; /* Hijau Zamrud (Emerald Green) */
+    --primary-dark: #0b5345;
+    --primary-light: #e8f8f5;
+    --accent: #58a724;
+    --bg-light: #f8fcfb;
+    --text-main: #2c3e50;
+    --text-muted: #7f8c8d;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: var(--bg-light); color: var(--text-main); overflow-x: hidden; }
+html { scroll-behavior: smooth; }
+
+/* --- LOADING SCREEN --- */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: var(--bg-light);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.bouncing-salad {
+    width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 50%; animation: bounce 0.6s infinite alternate; margin-bottom: 20px;
+}
+@keyframes bounce {
+    from { transform: translateY(0) scale(1.1, 0.9); }
+    to { transform: translateY(-50px) scale(0.9, 1.1); }
+}
+
+/* --- HEADER FLOATING (MODERN) --- */
+header {
+    position: fixed; 
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px 30px; 
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+    z-index: 1000; 
+    border-radius: 50px; /* Sudut melingkar */
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* --- HEADER & LOGO BARU --- */
+.header-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+/* Tulisan Nurra Salad dengan bingkai (outline) hijau dan warna berbeda */
+.logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* Membuat garis tepi / bingkai hijau */
+    -webkit-text-stroke: 1.5px var(--primary); 
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.white-text { color: #ffffff; }
+.green-text { 
+    color: var(--primary); 
+    /* Membuat bingkai kebalikan untuk kata Salad agar kontras */
+    -webkit-text-stroke: 1.5px #ffffff; 
+}
+
+/* Opsi Foto Profil */
+.profile-img { 
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid var(--primary); 
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.profile-img:hover { transform: scale(1.1); }
+
+/* --- HERO SECTION BARU --- */
+#hero {
+    height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+    /* Background diganti ke foto lokasi penjualan/cafe */
+    background: linear-gradient(135deg, rgba(11, 83, 69, 0.75) 0%, rgba(0, 0, 0, 0.6) 100%), 
+                url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    position: relative; overflow: hidden;
+}
+
+/* Animasi Rating Bergerak */
+.moving-rating {
+    position: absolute;
+    top: 90px; /* Menyesuaikan agar berada tepat di bawah navbar */
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(80, 200, 120, 0.9), rgba(11, 83, 69, 0.9));
+    color: white;
+    padding: 10px 0;
+    z-index: 10;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.moving-rating-text {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 1.1rem;
+    animation: scroll-left 25s linear infinite;
+    letter-spacing: 1px;
+}
+@keyframes scroll-left {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Pengaturan Image Pengganti Tulisan H1 */
+.hero-title-image {
+    max-width: 90%;
+    width: 400px; /* Sesuaikan ukuran ini dengan rasio asli fotomu */
+    height: auto;
+    margin-bottom: 25px;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));
+    border-radius: 15px; /* Hilangkan ini jika foto kamu berupa PNG transparan (logo) */
+}
+.logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; color: var(--primary-dark); }
+.logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+nav ul { list-style: none; display: flex; gap: 25px; }
+nav a { text-decoration: none; color: var(--text-main); font-weight: 600; transition: 0.3s; }
+nav a:hover { color: var(--primary); }
+.btn-nav { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(11, 83, 69, 0.3); }
+.btn-nav:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(11, 83, 69, 0.4); }
+
+/* --- HERO SECTION (FUTURISTIC GRADIENT BKG) --- */
+#hero {
+    height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+    /* Latar belakang foto dengan gradasi gelap nan elegan */
+    background: linear-gradient(135deg, rgba(11, 83, 69, 0.85) 0%, rgba(80, 200, 120, 0.75) 100%), 
+                url('https://images.unsplash.com/photo-1498837167922-41c46b66432b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    position: relative; overflow: hidden;
+}
+.floating-fruits { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 1; }
+.floating-fruits span { position: absolute; font-size: 3rem; opacity: 0.4; animation: floatFruit 10s linear infinite; bottom: -10%; }
+.floating-fruits span:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
+.floating-fruits span:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
+.floating-fruits span:nth-child(3) { left: 50%; animation-duration: 15s; animation-delay: 4s; }
+.floating-fruits span:nth-child(4) { left: 70%; animation-duration: 11s; animation-delay: 1s; }
+.floating-fruits span:nth-child(5) { left: 85%; animation-duration: 14s; animation-delay: 3s; }
+.floating-fruits span:nth-child(6) { left: 20%; animation-duration: 10s; animation-delay: 5s; }
+
+@keyframes floatFruit {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.5; }
+    80% { opacity: 0.5; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.glass-panel {
+    background: rgba(0, 0, 0, 0.4); /* Menggelapkan glass panel agar teks terang menonjol */
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    padding: 60px 50px; border-radius: 40px; z-index: 2; max-width: 800px;
+}
+.hero-content h1 { font-size: 4rem; background: linear-gradient(45deg, #ffffff, #a8e6cf); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+.hero-content .long {color: var(--primary);}
+.hero-content p { font-size: 1rem; margin-bottom: 15px; color: #ffffff; }
+
+.badge { display: inline-block; padding: 8px 15px; border-radius: 20px; background: rgba(80, 200, 120, 0.2); color: #a8e6cf; font-weight: bold; border: 1px solid var(--primary); margin-bottom: 20px; }
+
+/* Tambahan Pil Informasi */
+.hero-info-pills { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+.hero-info-pills span { background: rgba(65, 33, 33, 0.15); padding: 8px 20px; border-radius: 20px; color: whitesmoke; font-weight: 500; backdrop-filter: blur(10px); border: 1px solid rgba(44, 224, 89, 0.349); }
+
+.hero-buttons { display: flex; gap: 15px; justify-content: center; }
+.btn-cta { padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: bold; border: none; transition: 0.3s; }
+.btn-cta.primary { background: linear-gradient(45deg, var(--accent), #28dd92); color: white; box-shadow: 0 4px 15px rgb(158, 142, 142); }
+.btn-cta.primary:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgb(218, 206, 206); }
+.btn-cta.secondary { background: transparent; border: 2px solid #a8e6cf; color: #a8e6cf; }
+.btn-cta.secondary:hover { background: #a8e6cf; color: var(--primary-dark); }
+
+/* --- KEUNGGULAN --- */
+#keunggulan { padding: 100px 5% 80px; text-align: center; background: white; }
+.section-title { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 50px; position: relative; display: inline-block; }
+.section-title::after { content: ''; width: 50%; height: 4px; background: var(--primary); position: absolute; bottom: -10px; left: 25%; border-radius: 2px; }
+.grid-highlight { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.interactive-card { background: var(--primary-light); padding: 0; border-radius: 20px; overflow: hidden; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.interactive-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(80, 200, 120, 0.15); }
+.highlight-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 4px solid var(--primary); }
+.interactive-card h3 { color: var(--primary-dark); margin: 20px 0 10px; font-size: 1.4rem; }
+.interactive-card p { padding: 0 20px 25px; color: var(--text-muted); }
+
+/* --- MENU (KARYA RASA KAMI) --- */
+#menu { padding: 80px 5%; background: radial-gradient(circle at center, #ffffff 0%, var(--primary-light) 100%); text-align: center; }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 40px; }
+.elegant-card {
+    background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(80, 200, 120, 0.2); 
+    border-radius: 25px; padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.02); 
+    transition: border-color 0.4s ease, box-shadow 0.4s ease; position: relative; cursor: pointer; text-align: left;
+}
+.elegant-card:hover { border-color: var(--primary); box-shadow: 0 20px 40px rgba(80, 200, 120, 0.15); }
+.img-wrapper { overflow: hidden; border-radius: 20px; height: 220px; }
+.menu-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.elegant-card:hover .menu-img { transform: scale(1.1); }
+.menu-info { padding-top: 20px; text-align: center; }
+.menu-info h3 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 5px; }
+.menu-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
+.price { color: var(--primary-dark); font-weight: 800; font-size: 1.5rem; background: var(--primary-light); display: inline-block; padding: 5px 20px; border-radius: 15px; }
+
+/* Tombol Menu Lainnya (Gradasi Putih ke Zamrud) */
+.menu-action { text-align: center; margin-top: 40px; }
+.btn-menu-lain {
+    background: linear-gradient(135deg, #ffffff 0%, #50C878 100%);
+    color: var(--primary-dark);
+    padding: 15px 40px;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border: 2px solid rgba(80, 200, 120, 0.3);
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(80, 200, 120, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.btn-menu-lain:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(80, 200, 120, 0.4); border-color: var(--primary); }
+
+/* --- BANNER FOTO SEBELUM ULASAN --- */
+#galeri-banner {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Judul dengan Gradasi Hijau Zamrud */
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    /* Efek teks gradasi */
+    background: linear-gradient(135deg, #10b981 0%, #046c4e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Tata Letak Sejajar dengan CSS Grid */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; 
+}
+
+/* Desain Kartu (Wrapper) */
+.banner-wrapper {
+    position: relative;
+    border-radius: 16px; 
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Bayangan netral yang sangat lembut */
+    cursor: pointer;
+    height: 400px; 
+    transition: box-shadow 0.4s ease;
+}
+
+/* Efek Gambar */
+.banner-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Area Teks (Gradient Hijau Zamrud di Bawah) */
+.banner-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Gradasi dari hijau zamrud pekat ke transparan */
+    background: linear-gradient(to top, rgba(4, 108, 78, 0.95) 0%, rgba(16, 185, 129, 0.6) 60%, rgba(0, 0, 0, 0) 100%);
+    padding: 40px 25px 25px;
+    color: #ffffff;
+    text-align: left;
+    transform: translateY(30px); 
+    transition: all 0.4s ease-in-out;
+}
+
+.banner-text h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.banner-text p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0; 
+    transform: translateY(15px);
+    transition: all 0.4s ease-in-out;
+}
+
+/* Efek Interaktif Bergerak saat di-Hover */
+.banner-wrapper:hover {
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25); /* Bayangan memancarkan warna hijau zamrud saat di-hover */
+}
+
+.banner-wrapper:hover img {
+    transform: scale(1.08); 
+}
+
+.banner-wrapper:hover .banner-text {
+    transform: translateY(0); 
+}
+
+.banner-wrapper:hover .banner-text p {
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+/* Animasi Muncul Saat Scroll (Kondisi Awal) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Animasi Muncul Saat Scroll (Kondisi Aktif) */
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- GRAFIK PENGUNJUNG --- */
+#ulasan { padding: 80px 5%; background: white; text-align: center; }
+.google-overview { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.06); max-width: 800px; margin: 0 auto; border: 1px solid #f0f0f0; }
+.overview-header { display: flex; gap: 40px; align-items: center; border-bottom: 2px dashed #eee; padding-bottom: 25px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap; }
+.rating-big h2 { font-size: 4.5rem; color: var(--primary-dark); line-height: 1; }
+.tags span { background: var(--primary-light); color: var(--primary-dark); border: 1px solid var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; display: inline-block; margin-top: 5px;}
+.chart-container h3 { margin-bottom: 20px; color: var(--text-main); }
+.bar-chart { display: flex; justify-content: space-around; align-items: flex-end; height: 180px; margin-bottom: 15px; background: repeating-linear-gradient(0deg, transparent, transparent 34px, #f5f5f5 35px); border-bottom: 3px solid var(--text-main); padding-bottom: 5px; }
+.bar-group { display: flex; flex-direction: column; align-items: center; gap: 10px; height: 100%; justify-content: flex-end; width: 15%; }
+.bar { width: 100%; background: linear-gradient(to top, #81ecec, #00cec9); border-radius: 10px 10px 0 0; transition: height 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); height: 0; position: relative; }
+.bar.active { background: linear-gradient(to top, var(--accent), #ff9f43); box-shadow: 0 0 20px rgba(255, 111, 97, 0.5); }
+.bar:hover::after { content: attr(data-height); position: absolute; top: -35px; left: 50%; transform: translateX(-50%); background: var(--text-main); color: white; padding: 4px 10px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; }
+
+/* --- LOKASI / KONTAK GRADASI --- */
+#lokasi { padding: 60px 5%; background: white; }
+.lokasi-glass { display: flex; flex-wrap: wrap; border-radius: 40px; overflow: hidden; background: linear-gradient(135deg, var(--primary-dark), #062b24); box-shadow: 0 25px 50px rgba(11, 83, 69, 0.3); }
+.lokasi-glass h2 {border-bottom: 5px solid white; text-align: center; color: var(--primary);}
+.lokasi-info { flex: 1; min-width: 300px; padding: 60px; color: rgba(255,255,255,0.9); }
+.lokasi-info p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+.lokasi-map { flex: 1; min-width: 300px; min-height: 400px; }
+
+/* --- FOOTER --- */
+footer { background: #041f1a; color: white; text-align: center; padding: 30px; font-weight: 500; letter-spacing: 1px; }
+
+/* --- HERO TITLE: FUTURISTIC & AESTHETIC --- */
+.hero-content h1.glitch-title { 
+    font-size: 4.5rem; 
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    /* Gradasi warna futuristik (Hijau Neon ke Biru Muda) */
+    background: linear-gradient(90deg, #00ff87, #60efff); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    /* Efek cahaya (Glow) */
+    text-shadow: 0 0 20px rgba(0, 255, 135, 0.4), 0 0 40px rgba(96, 239, 255, 0.2);
+    animation: pulse-glow 3s infinite alternate;
+}
+
+/* Animasi bernapas (pulsing) agar tidak monoton */
+@keyframes pulse-glow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 255, 135, 0.4)); }
+    100% { transform: scale(1.03); filter: drop-shadow(0 0 25px rgba(96, 239, 255, 0.8)); }
+}
+
+/* --- KONTAK KAMI: ELEGAN --- */
+.lokasi-info h2 {
+    font-size: 2.2rem;
+    color: #a8e6cf; /* Warna hijau lembut yang elegan */
+    margin-bottom: 25px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    border-bottom: none !important; /* Menghilangkan border tebal lama */
+    position: relative;
+    display: inline-block;
+}
+
+/* Garis bawah elegan dengan gradasi */
+.lokasi-info h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #50C878, transparent);
+    border-radius: 2px;
+}
+
+.lokasi-info p { 
+    margin-bottom: 20px; 
+    line-height: 1.8; 
+    font-size: 1.1rem; 
+    /* Garis pemisah yang lebih tipis dan transparan agar mewah */
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+    padding-bottom: 15px; 
+    font-weight: 300;
+}
+
+/* --- FOOTER & DELIVERY BUTTONS --- */
+footer { 
+    background: linear-gradient(to top, #02120e, #041f1a); 
+    color: white; 
+    text-align: center; 
+    padding: 50px 20px 30px; 
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.delivery-partners {
+    margin-bottom: 40px;
+}
+
+.delivery-title {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #a8e6cf;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.delivery-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Desain tombol Delivery bergaya Glass/Premium */
+.btn-delivery {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-delivery:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* Warna Khas Aplikasi Ojol */
+.gofood { background: linear-gradient(135deg, #EE2737, #b31d29); }
+.grabfood { background: linear-gradient(135deg, #00B14F, #00823a); }
+.shopeefood { background: linear-gradient(135deg, #EE4D2D, #c23e23); }
+
+.copyright {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* --- LOADING SCREEN BARU (CUTE FRUITS) --- */
+#loader {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: var(--bg-light);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    z-index: 9999; 
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.cute-ingredients {
+    display: flex;
+    gap: 15px;
+    font-size: 3.5rem; /* Ukuran buah dan sayur */
+    margin-bottom: 10px;
+}
+
+.cute-ingredients span {
+    display: inline-block;
+    animation: jump-cute 0.6s infinite alternate;
+    /* Mengambil nilai delay dari inline CSS di HTML agar melompat bergantian */
+    animation-delay: var(--delay); 
+    transform-origin: bottom;
+    /* Memberikan efek bayangan kecil agar terasa lebih hidup */
+    filter: drop-shadow(0px 10px 5px rgba(0,0,0,0.1));
+}
+
+/* Animasi melompat yang kenyal (squash & stretch) */
+@keyframes jump-cute {
+    0% { 
+        transform: translateY(0) scaleY(0.8) scaleX(1.1); 
+    }
+    100% { 
+        transform: translateY(-40px) scaleY(1.1) scaleX(0.9); 
+    }
+}
+
+/* --- ANIMASI UMUM --- */
+.fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.fade-in.show { opacity: 1; transform: translateY(0); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    header { width: 95%; padding: 10px 20px; border-radius: 30px; top: 10px; }
+    nav ul { display: none; }
+    .hero-content { padding: 40px 20px; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-buttons { flex-direction: column; }
+    .lokasi-glass { flex-direction: column; }
+    .lokasi-map { height: 300px; }
+    .banner-wrapper { height: 200px; }
+}
+
+/* =========================================
+   RESPONSIVE MEDIA QUERIES (TABLET & MOBILE)
+   ========================================= */
+
+/* Layar Laptop Kecil & Tablet (Max-width: 992px) */
+@media (max-width: 992px) {
+    .hero-content h1.glitch-title { font-size: 3.5rem; }
+    .hero-content { padding: 40px 30px; }
+    .moving-rating { top: 100px; }
+    .lokasi-glass { flex-direction: column; }
+    .lokasi-map { min-height: 350px; }
+}
+
+/* Layar Handphone (Max-width: 768px) */
+@media (max-width: 768px) {
+    /* Header menumpuk ke bawah agar muat di HP */
+    header { 
+        flex-direction: column; 
+        padding: 15px; 
+        border-radius: 20px;
+        gap: 15px;
+    }
+    nav ul { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 15px; 
+        font-size: 0.9rem;
+    }
+    .header-right { 
+        width: 100%; 
+        justify-content: center; 
+    }
+    .moving-rating { 
+        top: 175px; /* Menyesuaikan tinggi header yang baru */
+    }
+    
+    /* Penyesuaian Ruang Hero */
+    #hero { 
+        height: auto; 
+        min-height: 100vh; 
+        padding-top: 220px; /* Ruang agar tidak tertutup header */
+        padding-bottom: 50px;
+    }
+    .hero-content { 
+        padding: 30px 20px; 
+        margin: 0 15px;
+    }
+    .hero-content h1.glitch-title { 
+        font-size: 2.5rem; 
+        letter-spacing: 2px;
+    }
+    .hero-buttons { 
+        flex-direction: column; 
+        width: 100%; 
+    }
+    .btn-cta { width: 100%; }
+    
+    /* Penyesuaian Ukuran Font & Grid */
+    .section-title { font-size: 1.8rem; }
+    .grid-highlight, .menu-grid, .gallery-container { 
+        grid-template-columns: 1fr; /* Memaksa 1 Kolom untuk HP */
+    }
+    
+    /* Ulasan & Rating */
+    .overview-header { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 20px;
+    }
+    .rating-big h2 { font-size: 3.5rem; }
+    
+    /* Kontak */
+    .lokasi-info { padding: 30px 20px; }
+    .lokasi-info h2 { font-size: 1.8rem; }
+}
+
+/* Layar Handphone Kecil (Max-width: 480px) */
+@media (max-width: 480px) {
+    .logo-text { font-size: 22px; }
+    .hero-content h1.glitch-title { font-size: 2rem; }
+    .hero-info-pills { flex-direction: column; gap: 10px; }
+    .hero-info-pills span { width: 100%; text-align: center; }
+    .bar-chart { height: 150px; }
+    .delivery-buttons { flex-direction: column; }
+    .btn-delivery { justify-content: center; }
+}
